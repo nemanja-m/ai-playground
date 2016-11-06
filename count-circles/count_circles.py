@@ -6,16 +6,19 @@ import sys, getopt
 
 def count(img_path, DRAW=0):
     # Read image
-    original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+    original = cv2.imread(img_path)
+
+    # Make red color black
+    red_only = original.copy()
+    red_only[:, :, 2] = 0
 
     # Remove noise
-    blurred = cv2.medianBlur(original, 5)
-    binary = cv2.adaptiveThreshold(blurred.copy(),
-                                   255,
-                                   cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                   cv2.THRESH_BINARY_INV,
-                                   11,
-                                   2)
+    blurred = cv2.medianBlur(red_only, 5)
+
+    # Make binary image
+    binary = cv2.threshold(blurred, 50 , 255, cv2.THRESH_BINARY)[1]
+    binary = cv2.cvtColor(binary, cv2.COLOR_BGR2GRAY)
+    binary = cv2.threshold(binary, 0, 255, cv2.THRESH_BINARY)[1]
 
     # Set up the detector with default parameters.
     detector = cv2.SimpleBlobDetector_create()
@@ -32,7 +35,7 @@ def count(img_path, DRAW=0):
                                               cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
         # Show keypoints
-        cv2.imshow('Keypoints', im_with_keypoints)
+        cv2.imshow('Keypoints', np.hstack([im_with_keypoints, original, blurred]))
         cv2.waitKey(0)
 
     return len(keypoints)
