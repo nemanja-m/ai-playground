@@ -1,5 +1,8 @@
+#!/usr/bin/python
+
 import cv2
 import numpy as np
+import sys, getopt
 
 def count(img_path, DRAW=0):
     # Read image
@@ -34,5 +37,27 @@ def count(img_path, DRAW=0):
 
     return len(keypoints)
 
+def main(argv):
+    input_file = ''
+    plot = False
+
+    try:
+        opts, args = getopt.getopt(argv, 'phi:', ['plot=', 'help=', 'image='])
+    except getopt.GetoptError:
+        print '\nusage: count_circles.py -i <image>\n'
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt in ( '-h', '--help' ):
+            print '\nusage: count_circles.py -i <image>\n'
+            sys.exit()
+        elif opt in ( '-i', '--image' ):
+            input_file = arg
+
+        if opt in ( '-p', '--plot' ):
+            plot = True
+
+    print count(input_file, plot)
+
 if __name__ == '__main__':
-    print count('img-2.png')
+    main(sys.argv[1:])
