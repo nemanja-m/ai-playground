@@ -33,7 +33,7 @@ def count(img_path, PLOT=0):
                                               cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
         # Show keypoints
-        cv2.imshow('Keypoints', np.hstack([im_with_keypoints, original, blurred]))
+        cv2.imshow('Keypoints', np.hstack([original, blurred, im_with_keypoints]))
         cv2.waitKey(0)
 
     return len(keypoints)
