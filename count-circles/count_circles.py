@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import cv2
 import numpy as np
 import sys, getopt
@@ -47,12 +45,16 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, 'phi:', ['plot=', 'help=', 'image='])
     except getopt.GetoptError:
-        print '\nusage: count_circles.py -i <image>\n'
+        print '\nusage: python count_circles.py -i <image>\n'
         sys.exit(2)
 
     for opt, arg in opts:
         if opt in ( '-h', '--help' ):
-            print '\nusage: count_circles.py -i <image>\n'
+            print '\nusage: python count_circles.py -i <image>'
+            print '\nOptions:'
+            print '\t-h [--help]  : Show help'
+            print '\t-i [--image] : Path to the image'
+            print '\t-p [--plot]  : Plot results'
             sys.exit()
         elif opt in ( '-i', '--image' ):
             input_file = arg
