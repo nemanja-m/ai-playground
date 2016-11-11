@@ -1,6 +1,6 @@
 # About
 
-Program counts circles on given input image. Images have blue gradient background with red circles on it.
+Script that counts circles on given input image. Images have blue gradient background with red circles on it.
 Also, images may contain noise.
 
 # Usage
@@ -11,9 +11,9 @@ To count circles on given input image run:
 python count_circles.py -i <image_path>
 ```
 
-For help run:
+For help, run:
 
-```
+``` bash
 python count_circles.py -h
 ```
 

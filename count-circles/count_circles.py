@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import sys, getopt
 
-def count(img_path, DRAW=0):
+def count(img_path, PLOT=0):
     # Read image
     original = cv2.imread(img_path)
 
@@ -24,7 +24,7 @@ def count(img_path, DRAW=0):
     # Detect blobs.
     keypoints = detector.detect(binary)
 
-    if DRAW:
+    if PLOT:
         # Draw detected blobs as red circles.
         im_with_keypoints = cv2.drawKeypoints(blurred,
                                               keypoints,
