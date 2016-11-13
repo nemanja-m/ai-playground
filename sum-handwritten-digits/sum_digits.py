@@ -20,7 +20,7 @@ def main(argv):
     clsf = 'knn'
 
     try:
-        opts, args = getopt.getopt(argv, 'hi:c', ['help=', 'image=', 'classifier='])
+        opts, args = getopt.getopt(argv, 'hi:c:', ['help=', 'image=', 'classifier='])
     except getopt.GetoptError:
         print '\nusage: python sum_digits.py -i <image>\n'
         sys.exit(2)
