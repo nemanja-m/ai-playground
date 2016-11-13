@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Numpy saved models
+*.pkl
+*.npy
+*.hdf5
