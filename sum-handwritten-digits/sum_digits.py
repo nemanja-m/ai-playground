@@ -3,10 +3,7 @@ import getopt
 from processing_utils import ImageUtils
 from classifiers import Classifier
 
-def sum_digits(image_path, clsf='knn'):
-    # Initialize classifier, default classifier is kNN
-    classifier = Classifier(clsf)
-
+def sum_digits(image_path, classifier):
     # Get all regions containing digits, from image
     regions = ImageUtils.regions(image_path)
 
@@ -41,7 +38,14 @@ def main(argv):
         else:
             clsf = arg.lower()
 
-    print '\nSum: %.1f' % sum_digits(image_path)
+
+    print '\n=> Initializing classifier ...'
+
+    # Initialize classifier, default classifier is kNN
+    classifier = Classifier(clsf)
+
+    print '=> Calculating sum ...'
+    print '\nSum: %.1f' % sum_digits(image_path, classifier)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
