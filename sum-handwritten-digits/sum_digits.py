@@ -38,7 +38,6 @@ def main(argv):
         else:
             clsf = arg.lower()
 
-
     print '\n=> Initializing classifier ...'
 
     # Initialize classifier, default classifier is kNN
