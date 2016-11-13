@@ -31,8 +31,8 @@ class Classifier:
 
                 print '=> Saving trained model ...'
 
-                # Try to create fodler. If already exist ignore excpetion
-                # Any other error gets reported
+                # Try to create folder. If already exists ignore exception
+                # Any other error gets reported.
                 try:
                     os.makedirs('knn')
                 except OSError as exception:
