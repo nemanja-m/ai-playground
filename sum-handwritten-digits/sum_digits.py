@@ -23,7 +23,7 @@ def main(argv):
     clsf = 'knn'
 
     try:
-        opts, args = getopt.getopt(argv, 'hic', ['help=', 'image=', 'classifier='])
+        opts, args = getopt.getopt(argv, 'hi:c', ['help=', 'image=', 'classifier='])
     except getopt.GetoptError:
         print '\nusage: python sum_digits.py -i <image>\n'
         sys.exit(2)
@@ -37,11 +37,11 @@ def main(argv):
             print '\t-c [--classifier], : Specify classifier. KNN (default) or CNN'
             sys.exit()
         elif opt in ('-i', '--image'):
-            input_image = arg
+            image_path = arg
         else:
             clsf = arg.lower()
 
-    print '\nSum: ' + str(sum_digits(image_path))
+    print '\nSum: %.1f' % sum_digits(image_path)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main(sys.argv[1:])
