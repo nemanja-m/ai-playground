@@ -35,5 +35,3 @@ class ImageUtils:
                 regions.append(region)
 
         return regions
-
-

@@ -3,7 +3,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.externals import joblib
 import numpy as np
 import importlib
-import os.path
+import os
+import errno
 
 class Classifier:
 
@@ -29,6 +30,15 @@ class Classifier:
                 self.model.fit(mnist.data, mnist.target)
 
                 print '=> Saving trained model ...'
+
+                # Try to create fodler. If already exist ignore excpetion
+                # Any other error gets reported
+                try:
+                    os.makedirs('knn')
+                except OSError as exception:
+                    if exception.errno != errno.EEXIST:
+                        raise
+
                 joblib.dump(self.model, 'knn/knn_model.pkl')
                 print '=> KNN model saved successfully to \'knn/knn_model.pkl\''
 
@@ -56,7 +66,6 @@ class Classifier:
 
             # Initialize LeNet
             self.model = LeNet.build(train_data, train_labels)
-
 
     def predict(self, image):
         if self.classifier == 'knn':
